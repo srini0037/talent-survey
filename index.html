@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Management Survey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 20px;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question-label {
+            display: block;
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .radio-option:hover,
+        .checkbox-option:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .radio-option input[type="radio"],
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .radio-option.selected,
+        .checkbox-option.selected {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .scale-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .scale-option {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .scale-option input[type="radio"] {
+            display: none;
+        }
+
+        .scale-option label {
+            display: block;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .scale-option input[type="radio"]:checked + label {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .scale-option label:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .scale-text {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .ranking-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: move;
+        }
+
+        .ranking-item.selected {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .ranking-number {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 14px;
+        }
+
+        .ranking-item.unselected .ranking-number {
+            background: #e0e0e0;
+            color: #999;
+        }
+
+        .ranking-label {
+            flex: 1;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            max-width: 500px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message h2 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .form-content {
+                padding: 30px 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .scale-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .scale-option {
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .scale-option label {
+                width: 50px;
+                flex-shrink: 0;
+            }
+
+            .scale-text {
+                flex: 1;
+                text-align: left;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A Strategic Framework for Sustainable Talent Management</h1>
+            <p>Participant Survey</p>
+            <p style="margin-top: 15px;">Thank you for taking part in this study on what Gen Z and early-career professionals value in employers. The survey takes 15 minutes. Responses are anonymous and used only for research. Participation is voluntary, you may withdraw anytime.</p>
+        </div>
+
+        <div class="form-content">
+            <form id="surveyForm">
+                <!-- Consent Section -->
+                <div class="section">
+                    <h2 class="section-title">Consent</h2>
+                    <p class="section-description">Before starting, please read the statements below and confirm your consent to take part in this study. Your participation is voluntary, your responses are anonymous, and you may stop at any time.</p>
+
+                    <div class="question">
+                        <label class="question-label">I confirm that I am 18 years old or above.<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="consent_age" value="Agree" required>
+                                <span>Agree</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">I have agreed to take part voluntarily.<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="consent_voluntary" value="Agree" required>
+                                <span>Agree</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">I understand my responses are anonymous and will be used only for academic research.<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="consent_anonymous" value="Agree" required>
+                                <span>Agree</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">I understand I can withdraw at any time before submitting the survey.<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="consent_withdraw" value="Agree" required>
+                                <span>Agree</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demographics Section -->
+                <div class="section">
+                    <h2 class="section-title">Demographics</h2>
+                    <p class="section-description">This section collects basic information about you, such as age, employment status, and education level. These questions help ensure the results reflect a diverse range of participants.</p>
+
+                    <div class="question">
+                        <label class="question-label">Age<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="age" value="18-20" required>
+                                <span>18-20</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="age" value="21-24">
+                                <span>21-24</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="age" value="25-29">
+                                <span>25-29</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">Gender<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="gender" value="Male" required>
+                                <span>Male</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="gender" value="Female">
+                                <span>Female</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="gender" value="Non-Binary">
+                                <span>Non-Binary</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="gender" value="Prefer not to say">
+                                <span>Prefer not to say</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">Employment Status<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="employment" value="Employed Full time" required>
+                                <span>Employed Full time</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="employment" value="Employed Part time">
+                                <span>Employed Part time</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="employment" value="Freelance/contract">
+                                <span>Freelance/contract</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="employment" value="Unemployed and looking">
+                                <span>Unemployed and looking</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="employment" value="Student">
+                                <span>Student</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="employment" value="Other">
+                                <span>Other</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">Highest level of education<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="education" value="A-levels / equivalent" required>
+                                <span>A-levels / equivalent</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="education" value="Undergraduate degree">
+                                <span>Undergraduate degree</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="education" value="Postgraduate degree">
+                                <span>Postgraduate degree</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="education" value="Vocational qualification">
+                                <span>Vocational qualification</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="education" value="Other">
+                                <span>Other</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extrinsic Rewards Section -->
+                <div class="section">
+                    <h2 class="section-title">Extrinsic Rewards</h2>
+                    <p class="section-description">These questions explore how important salary, benefits, job security, and pay transparency are in your job decisions. (1 = Not important, 5 = Extremely important)</p>
+
+                    <div class="question">
+                        <label class="question-label">How important is a high or competitive salary?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_bonus" value="1" id="ex_bon_1" required>
+                                <label for="ex_bon_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_bonus" value="2" id="ex_bon_2">
+                                <label for="ex_bon_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_bonus" value="3" id="ex_bon_3">
+                                <label for="ex_bon_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_bonus" value="4" id="ex_bon_4">
+                                <label for="ex_bon_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_bonus" value="5" id="ex_bon_5">
+                                <label for="ex_bon_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important are benefits (healthcare, pension)?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_benefits" value="1" id="ex_ben_1" required>
+                                <label for="ex_ben_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_benefits" value="2" id="ex_ben_2">
+                                <label for="ex_ben_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_benefits" value="3" id="ex_ben_3">
+                                <label for="ex_ben_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_benefits" value="4" id="ex_ben_4">
+                                <label for="ex_ben_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_benefits" value="5" id="ex_ben_5">
+                                <label for="ex_ben_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">I would accept a job with limited growth opportunities if the pay was high.<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_growth_pay" value="1" id="ex_gro_1" required>
+                                <label for="ex_gro_1">1</label>
+                                <span class="scale-text">Strongly disagree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_growth_pay" value="2" id="ex_gro_2">
+                                <label for="ex_gro_2">2</label>
+                                <span class="scale-text">Disagree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_growth_pay" value="3" id="ex_gro_3">
+                                <label for="ex_gro_3">3</label>
+                                <span class="scale-text">Neutral</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_growth_pay" value="4" id="ex_gro_4">
+                                <label for="ex_gro_4">4</label>
+                                <span class="scale-text">Agree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_growth_pay" value="5" id="ex_gro_5">
+                                <label for="ex_gro_5">5</label>
+                                <span class="scale-text">Strongly agree</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is job security and stability?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_security" value="1" id="ex_sec_1" required>
+                                <label for="ex_sec_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_security" value="2" id="ex_sec_2">
+                                <label for="ex_sec_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_security" value="3" id="ex_sec_3">
+                                <label for="ex_sec_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_security" value="4" id="ex_sec_4">
+                                <label for="ex_sec_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_security" value="5" id="ex_sec_5">
+                                <label for="ex_sec_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important are transparent pay policies (pay ranges, fairness)?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_transparency" value="1" id="ex_tra_1" required>
+                                <label for="ex_tra_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_transparency" value="2" id="ex_tra_2">
+                                <label for="ex_tra_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_transparency" value="3" id="ex_tra_3">
+                                <label for="ex_tra_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_transparency" value="4" id="ex_tra_4">
+                                <label for="ex_tra_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_transparency" value="5" id="ex_tra_5">
+                                <label for="ex_tra_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is a company's commitment to equal pay and reducing the gender pay gap?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_equal_pay" value="1" id="ex_equ_1" required>
+                                <label for="ex_equ_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_equal_pay" value="2" id="ex_equ_2">
+                                <label for="ex_equ_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_equal_pay" value="3" id="ex_equ_3">
+                                <label for="ex_equ_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_equal_pay" value="4" id="ex_equ_4">
+                                <label for="ex_equ_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="extrinsic_equal_pay" value="5" id="ex_equ_5">
+                                <label for="ex_equ_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intrinsic Rewards Section -->
+                <div class="section">
+                    <h2 class="section-title">Intrinsic Rewards</h2>
+                    <p class="section-description">This section asks about motivational factors such as meaningful work, autonomy, learning opportunities, and career growth. (1 = Not important, 5 = Extremely important)</p>
+
+                    <div class="question">
+                        <label class="question-label">How important is meaningful and challenging work?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_meaningful" value="1" id="in_mea_1" required>
+                                <label for="in_mea_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_meaningful" value="2" id="in_mea_2">
+                                <label for="in_mea_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_meaningful" value="3" id="in_mea_3">
+                                <label for="in_mea_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_meaningful" value="4" id="in_mea_4">
+                                <label for="in_mea_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_meaningful" value="5" id="in_mea_5">
+                                <label for="in_mea_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is autonomy and independence in how you work?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_autonomy" value="1" id="in_aut_1" required>
+                                <label for="in_aut_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_autonomy" value="2" id="in_aut_2">
+                                <label for="in_aut_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_autonomy" value="3" id="in_aut_3">
+                                <label for="in_aut_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_autonomy" value="4" id="in_aut_4">
+                                <label for="in_aut_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_autonomy" value="5" id="in_aut_5">
+                                <label for="in_aut_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is a clear and rapid career advancement path?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_career" value="1" id="in_car_1" required>
+                                <label for="in_car_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_career" value="2" id="in_car_2">
+                                <label for="in_car_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_career" value="3" id="in_car_3">
+                                <label for="in_car_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_career" value="4" id="in_car_4">
+                                <label for="in_car_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_career" value="5" id="in_car_5">
+                                <label for="in_car_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important are opportunities for continuous training and skills development?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_training" value="1" id="in_tra_1" required>
+                                <label for="in_tra_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_training" value="2" id="in_tra_2">
+                                <label for="in_tra_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_training" value="3" id="in_tra_3">
+                                <label for="in_tra_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_training" value="4" id="in_tra_4">
+                                <label for="in_tra_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_training" value="5" id="in_tra_5">
+                                <label for="in_tra_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is mentoring and professional development?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_mentoring" value="1" id="in_men_1" required>
+                                <label for="in_men_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_mentoring" value="2" id="in_men_2">
+                                <label for="in_men_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_mentoring" value="3" id="in_men_3">
+                                <label for="in_men_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_mentoring" value="4" id="in_men_4">
+                                <label for="in_men_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="intrinsic_mentoring" value="5" id="in_men_5">
+                                <label for="in_men_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Environment Section -->
+                <div class="section">
+                    <h2 class="section-title">Work Environment</h2>
+                    <p class="section-description">These questions focus on workplace culture, relationships, flexibility, and mental health support. (1 = Not important, 5 = Extremely important)</p>
+
+                    <div class="question">
+                        <label class="question-label">How important is work-life balance and flexible working arrangements?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_balance" value="1" id="we_bal_1" required>
+                                <label for="we_bal_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_balance" value="2" id="we_bal_2">
+                                <label for="we_bal_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_balance" value="3" id="we_bal_3">
+                                <label for="we_bal_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_balance" value="4" id="we_bal_4">
+                                <label for="we_bal_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_balance" value="5" id="we_bal_5">
+                                <label for="we_bal_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">It does not really matter to me if an organisation is committed to diversity and inclusion<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity_reverse" value="1" id="we_div_1" required>
+                                <label for="we_div_1">1</label>
+                                <span class="scale-text">Strongly disagree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity_reverse" value="2" id="we_div_2">
+                                <label for="we_div_2">2</label>
+                                <span class="scale-text">Disagree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity_reverse" value="3" id="we_div_3">
+                                <label for="we_div_3">3</label>
+                                <span class="scale-text">Neutral</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity_reverse" value="4" id="we_div_4">
+                                <label for="we_div_4">4</label>
+                                <span class="scale-text">Agree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity_reverse" value="5" id="we_div_5">
+                                <label for="we_div_5">5</label>
+                                <span class="scale-text">Strongly agree</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is a positive relationship with a manager or supervisor?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_manager" value="1" id="we_man_1" required>
+                                <label for="we_man_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_manager" value="2" id="we_man_2">
+                                <label for="we_man_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_manager" value="3" id="we_man_3">
+                                <label for="we_man_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_manager" value="4" id="we_man_4">
+                                <label for="we_man_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_manager" value="5" id="we_man_5">
+                                <label for="we_man_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is a positive relationship with coworkers?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworkers" value="1" id="we_cow_1" required>
+                                <label for="we_cow_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworkers" value="2" id="we_cow_2">
+                                <label for="we_cow_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworkers" value="3" id="we_cow_3">
+                                <label for="we_cow_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworkers" value="4" id="we_cow_4">
+                                <label for="we_cow_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworkers" value="5" id="we_cow_5">
+                                <label for="we_cow_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is mental health and wellness support?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_mental_health" value="1" id="we_men_1" required>
+                                <label for="we_men_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mental_health" value="2" id="we_men_2">
+                                <label for="we_men_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mental_health" value="3" id="we_men_3">
+                                <label for="we_men_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mental_health" value="4" id="we_men_4">
+                                <label for="we_men_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mental_health" value="5" id="we_men_5">
+                                <label for="we_men_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is a diverse and inclusive workplace culture?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity" value="1" id="we_inc_1" required>
+                                <label for="we_inc_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity" value="2" id="we_inc_2">
+                                <label for="we_inc_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity" value="3" id="we_inc_3">
+                                <label for="we_inc_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity" value="4" id="we_inc_4">
+                                <label for="we_inc_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_diversity" value="5" id="we_inc_5">
+                                <label for="we_inc_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is the organisation's mission and purpose?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_mission" value="1" id="we_mis_1" required>
+                                <label for="we_mis_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mission" value="2" id="we_mis_2">
+                                <label for="we_mis_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mission" value="3" id="we_mis_3">
+                                <label for="we_mis_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mission" value="4" id="we_mis_4">
+                                <label for="we_mis_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_mission" value="5" id="we_mis_5">
+                                <label for="we_mis_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is the organisation's commitment to social responsibility (CSR)?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_csr" value="1" id="we_csr_1" required>
+                                <label for="we_csr_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_csr" value="2" id="we_csr_2">
+                                <label for="we_csr_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_csr" value="3" id="we_csr_3">
+                                <label for="we_csr_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_csr" value="4" id="we_csr_4">
+                                <label for="we_csr_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_csr" value="5" id="we_csr_5">
+                                <label for="we_csr_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is the organisation's reputation and values?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_reputation" value="1" id="we_rep_1" required>
+                                <label for="we_rep_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_reputation" value="2" id="we_rep_2">
+                                <label for="we_rep_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_reputation" value="3" id="we_rep_3">
+                                <label for="we_rep_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_reputation" value="4" id="we_rep_4">
+                                <label for="we_rep_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_reputation" value="5" id="we_rep_5">
+                                <label for="we_rep_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">Having a poor relationship with coworkers would not affect my decision to stay at a job.<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworker_reverse" value="1" id="we_cor_1" required>
+                                <label for="we_cor_1">1</label>
+                                <span class="scale-text">Strongly disagree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworker_reverse" value="2" id="we_cor_2">
+                                <label for="we_cor_2">2</label>
+                                <span class="scale-text">Disagree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworker_reverse" value="3" id="we_cor_3">
+                                <label for="we_cor_3">3</label>
+                                <span class="scale-text">Neutral</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworker_reverse" value="4" id="we_cor_4">
+                                <label for="we_cor_4">4</label>
+                                <span class="scale-text">Agree</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="work_coworker_reverse" value="5" id="we_cor_5">
+                                <label for="we_cor_5">5</label>
+                                <span class="scale-text">Strongly agree</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recruitment & Channels Section -->
+                <div class="section">
+                    <h2 class="section-title">Recruitment & Channels</h2>
+                    <p class="section-description">These questions look at how you research employers and which communication channels you prefer during recruitment.</p>
+
+                    <div class="question">
+                        <label class="question-label">Preferred social media platforms for researching employers.<span class="required">*</span></label>
+                        <p class="hint">Select all that apply (Minimum 2)</p>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="LinkedIn" id="rec_lin">
+                                <label for="rec_lin">LinkedIn</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="Instagram" id="rec_ins">
+                                <label for="rec_ins">Instagram</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="TikTok" id="rec_tik">
+                                <label for="rec_tik">TikTok</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="Facebook" id="rec_fac">
+                                <label for="rec_fac">Facebook</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="X (Twitter)" id="rec_twi">
+                                <label for="rec_twi">X (Twitter)</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="Glassdoor or employer review sites" id="rec_gla">
+                                <label for="rec_gla">Glassdoor or employer review sites</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_platforms" value="University career portals" id="rec_uni">
+                                <label for="rec_uni">University career portals</label>
+                            </div>
+                        </div>
+                        <div class="error" id="platforms-error">Please select at least 2 platforms</div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">Preferred channels for communication during recruitment.<span class="required">*</span></label>
+                        <p class="hint">Select all that apply</p>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_channels" value="Email" id="rec_ema">
+                                <label for="rec_ema">Email</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_channels" value="Phone call" id="rec_pho">
+                                <label for="rec_pho">Phone call</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_channels" value="SMS/Text" id="rec_sms">
+                                <label for="rec_sms">SMS/Text</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_channels" value="LinkedIn message" id="rec_lim">
+                                <label for="rec_lim">LinkedIn message</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="recruitment_channels" value="In-platform messaging systems" id="rec_pla">
+                                <label for="rec_pla">In-platform messaging systems</label>
+                            </div>
+                        </div>
+                        <div class="error" id="channels-error">Please select at least 1 channel</div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is a company's social media presence on your application decision?<span class="required">*</span></label>
+                        <p class="hint">(1 = Not important, 5 = Extremely important)</p>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="recruitment_social_media" value="1" id="rec_soc_1" required>
+                                <label for="rec_soc_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="recruitment_social_media" value="2" id="rec_soc_2">
+                                <label for="rec_soc_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="recruitment_social_media" value="3" id="rec_soc_3">
+                                <label for="rec_soc_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="recruitment_social_media" value="4" id="rec_soc_4">
+                                <label for="rec_soc_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="recruitment_social_media" value="5" id="rec_soc_5">
+                                <label for="rec_soc_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology & AI Section -->
+                <div class="section">
+                    <h2 class="section-title">Technology & AI in Recruitment</h2>
+                    <p class="section-description">This section asks for your views on the use of AI and ethical recruitment practices when applying for jobs. (1 = Not important, 5 = Extremely important)</p>
+
+                    <div class="question">
+                        <label class="question-label">How important is an organisation's transparency about pay policy and trust?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="tech_transparency" value="1" id="tec_tra_1" required>
+                                <label for="tec_tra_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_transparency" value="2" id="tec_tra_2">
+                                <label for="tec_tra_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_transparency" value="3" id="tec_tra_3">
+                                <label for="tec_tra_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_transparency" value="4" id="tec_tra_4">
+                                <label for="tec_tra_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_transparency" value="5" id="tec_tra_5">
+                                <label for="tec_tra_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is it that the employer uses ethical, unbiased recruitment practices (including AI use)?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ethical" value="1" id="tec_eth_1" required>
+                                <label for="tec_eth_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ethical" value="2" id="tec_eth_2">
+                                <label for="tec_eth_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ethical" value="3" id="tec_eth_3">
+                                <label for="tec_eth_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ethical" value="4" id="tec_eth_4">
+                                <label for="tec_eth_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ethical" value="5" id="tec_eth_5">
+                                <label for="tec_eth_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is visible commitment to mental health and well-being when choosing an employer?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="tech_mental_health" value="1" id="tec_men_1" required>
+                                <label for="tec_men_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_mental_health" value="2" id="tec_men_2">
+                                <label for="tec_men_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_mental_health" value="3" id="tec_men_3">
+                                <label for="tec_men_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_mental_health" value="4" id="tec_men_4">
+                                <label for="tec_men_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_mental_health" value="5" id="tec_men_5">
+                                <label for="tec_men_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How important is the use of AI in the recruitment process to you?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_use" value="1" id="tec_aiu_1" required>
+                                <label for="tec_aiu_1">1</label>
+                                <span class="scale-text">Not important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_use" value="2" id="tec_aiu_2">
+                                <label for="tec_aiu_2">2</label>
+                                <span class="scale-text">Slightly important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_use" value="3" id="tec_aiu_3">
+                                <label for="tec_aiu_3">3</label>
+                                <span class="scale-text">Moderately important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_use" value="4" id="tec_aiu_4">
+                                <label for="tec_aiu_4">4</label>
+                                <span class="scale-text">Very important</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_use" value="5" id="tec_aiu_5">
+                                <label for="tec_aiu_5">5</label>
+                                <span class="scale-text">Extremely important</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">How confident are you that AI-driven recruitment tools can be fair and unbiased?<span class="required">*</span></label>
+                        <div class="scale-group">
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_confidence" value="1" id="tec_aic_1" required>
+                                <label for="tec_aic_1">1</label>
+                                <span class="scale-text">Not confident</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_confidence" value="2" id="tec_aic_2">
+                                <label for="tec_aic_2">2</label>
+                                <span class="scale-text">Slightly confident</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_confidence" value="3" id="tec_aic_3">
+                                <label for="tec_aic_3">3</label>
+                                <span class="scale-text">Moderately confident</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_confidence" value="4" id="tec_aic_4">
+                                <label for="tec_aic_4">4</label>
+                                <span class="scale-text">Very confident</span>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" name="tech_ai_confidence" value="5" id="tec_aic_5">
+                                <label for="tec_aic_5">5</label>
+                                <span class="scale-text">Extremely confident</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label">To what extent do you prefer AI-driven vs human-driven initial job application screening?<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="tech_ai_preference" value="Prefer mostly AI-driven" required>
+                                <span>Prefer mostly AI-driven</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="tech_ai_preference" value="Prefer a mix of AI + human review">
+                                <span>Prefer a mix of AI + human review</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="tech_ai_preference" value="Prefer mostly human-driven">
+                                <span>Prefer mostly human-driven</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="tech_ai_preference" value="Prefer only human-driven">
+                                <span>Prefer only human-driven</span>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="tech_ai_preference" value="No preference">
+                                <span>No preference</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decision Drivers Section -->
+                <div class="section">
+                    <h2 class="section-title">Decision Drivers</h2>
+                    <p class="section-description">This ranking exercise helps identify the factors that matter most to you when choosing between job offers.</p>
+
+                    <div class="question">
+                        <label class="question-label">Rank your top 5 decision factors when choosing between two job offers:<span class="required">*</span></label>
+                        <p class="hint">Click on items to select your top 5, in order of importance</p>
+                        <div class="ranking-container" id="rankingContainer">
+                            <div class="ranking-item unselected" data-value="Salary">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Salary</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Career progression">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Career progression</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Work-life balance">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Work-life balance</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Workplace culture & values">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Workplace culture & values</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Diversity & inclusion">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Diversity & inclusion</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Mental health support">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Mental health support</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Location">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Location</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Learning & development">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Learning & development</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Relationship with manager">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Relationship with manager</span>
+                            </div>
+                            <div class="ranking-item unselected" data-value="Company reputation">
+                                <span class="ranking-number">-</span>
+                                <span class="ranking-label">Company reputation</span>
+                            </div>
+                        </div>
+                        <div class="error" id="ranking-error">Please select exactly 5 factors in order of importance</div>
+                    </div>
+                </div>
+
+                <!-- Thank You Section -->
+                <div class="section">
+                    <h2 class="section-title">Thank you & Next steps</h2>
+                    <p class="section-description">We greatly appreciate your contribution, which will enhance the ability of organisations to attract and support young professionals.</p>
+
+                    <div class="question">
+                        <label class="question-label">If you would like to take part in a follow-up interview, please provide your email below (optional).</label>
+                        <p class="hint">Your email will be stored separately and will not be linked to your survey responses.</p>
+                        <input type="email" name="follow_up_email" placeholder="your.email@example.com">
+                    </div>
+
+                    <p style="margin-top: 20px; margin-bottom: 20px; color: #666; font-size: 14px;">Thank you again for your time and valuable insights.</p>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Survey</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="success-message" id="successMessage">
+        <h2>✓ Survey Submitted Successfully!</h2>
+        <p>Thank you for your valuable contribution to this research.</p>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">Your responses have been recorded.</p>
+    </div>
+
+    <script>
+        // Radio and checkbox styling
+        document.querySelectorAll('.radio-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.checked = true;
+                    
+                    // Remove selected class from siblings
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.radio-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                }
+            });
+        });
+
+        document.querySelectorAll('.checkbox-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'INPUT') {
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    if (checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                }
+                
+                // Toggle selected class
+                if (this.querySelector('input[type="checkbox"]').checked) {
+                    this.classList.add('selected');
+                } else {
+                    this.classList.remove('selected');
+                }
+            });
+        });
+
+        // Ranking functionality
+        let selectedRankings = [];
+        const rankingItems = document.querySelectorAll('.ranking-item');
+
+        rankingItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                
+                if (this.classList.contains('selected')) {
+                    // Deselect and remove from rankings
+                    const index = selectedRankings.indexOf(value);
+                    selectedRankings.splice(index, 1);
+                    this.classList.remove('selected');
+                    this.classList.add('unselected');
+                } else if (selectedRankings.length < 5) {
+                    // Select and add to rankings
+                    selectedRankings.push(value);
+                    this.classList.remove('unselected');
+                    this.classList.add('selected');
+                }
+                
+                // Update all numbers
+                updateRankingNumbers();
+            });
+        });
+
+        function updateRankingNumbers() {
+            rankingItems.forEach(item => {
+                const value = item.getAttribute('data-value');
+                const numberSpan = item.querySelector('.ranking-number');
+                const index = selectedRankings.indexOf(value);
+                
+                if (index !== -1) {
+                    numberSpan.textContent = index + 1;
+                } else {
+                    numberSpan.textContent = '-';
+                }
+            });
+        }
+
+        // Form submission
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate platforms (minimum 2)
+            const platforms = document.querySelectorAll('input[name="recruitment_platforms"]:checked');
+            const platformsError = document.getElementById('platforms-error');
+            if (platforms.length < 2) {
+                platformsError.classList.add('show');
+                platforms[0].closest('.question').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            } else {
+                platformsError.classList.remove('show');
+            }
+
+            // Validate channels (minimum 1)
+            const channels = document.querySelectorAll('input[name="recruitment_channels"]:checked');
+            const channelsError = document.getElementById('channels-error');
+            if (channels.length < 1) {
+                channelsError.classList.add('show');
+                channels[0].closest('.question').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            } else {
+                channelsError.classList.remove('show');
+            }
+
+            // Validate ranking (exactly 5)
+            const rankingError = document.getElementById('ranking-error');
+            if (selectedRankings.length !== 5) {
+                rankingError.classList.add('show');
+                document.getElementById('rankingContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            } else {
+                rankingError.classList.remove('show');
+            }
+
+            // Collect all form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Regular fields
+            for (let [key, value] of formData.entries()) {
+                if (key === 'recruitment_platforms' || key === 'recruitment_channels') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Add rankings
+            data.decision_factors_ranking = selectedRankings;
+
+            // Add timestamp
+            data.submitted_at = new Date().toISOString();
+
+            // Store in localStorage
+            const existingResponses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+            existingResponses.push(data);
+            localStorage.setItem('surveyResponses', JSON.stringify(existingResponses));
+
+            // Show success message
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('successMessage').classList.add('show');
+
+            // Optional: Reset form after 3 seconds
+            setTimeout(() => {
+                document.getElementById('overlay').classList.remove('show');
+                document.getElementById('successMessage').classList.remove('show');
+                this.reset();
+                selectedRankings = [];
+                updateRankingNumbers();
+                document.querySelectorAll('.selected').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                document.querySelectorAll('.ranking-item').forEach(el => {
+                    el.classList.add('unselected');
+                });
+            }, 3000);
+        });
+
+        // Console log for viewing stored responses
+        console.log('To view all survey responses, type: JSON.parse(localStorage.getItem("surveyResponses"))');
+    </script>
+</body>
+</html>
