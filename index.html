@@ -146,6 +146,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            align-items: center;
         }
 
         .scale-option input[type="radio"] {
@@ -156,22 +157,31 @@
             display: block;
             padding: 12px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 50%;
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 500;
             font-size: 36px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
         }
 
         .scale-option input[type="radio"]:checked + label {
-            background-color: #667eea;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             color: white;
-            border-color: #667eea;
+            border-color: #81c784;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
         }
 
         .scale-option label:hover {
-            border-color: #667eea;
-            background-color: #f8f9ff;
+            border-color: #81c784;
+            background: linear-gradient(135deg, #f1f8f4 0%, #e8f5e9 100%);
+            transform: scale(1.05);
         }
 
         .scale-text {
@@ -363,11 +373,13 @@
 
             .scale-option label {
                 width: 60px;
+                height: 60px;
                 flex-shrink: 0;
                 padding: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border-radius: 50%;
             }
 
             .scale-text {
@@ -546,27 +558,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_bonus" value="Not important" id="ex_bon_1" required>
-                                <label for="ex_bon_1">😐</label>
+                                <label for="ex_bon_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_bonus" value="Slightly important" id="ex_bon_2">
-                                <label for="ex_bon_2">🙂</label>
+                                <label for="ex_bon_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_bonus" value="Moderately important" id="ex_bon_3">
-                                <label for="ex_bon_3">😊</label>
+                                <label for="ex_bon_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_bonus" value="Very important" id="ex_bon_4">
-                                <label for="ex_bon_4">😃</label>
+                                <label for="ex_bon_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_bonus" value="Extremely important" id="ex_bon_5">
-                                <label for="ex_bon_5">🤩</label>
+                                <label for="ex_bon_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -577,27 +589,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_benefits" value="Not important" id="ex_ben_1" required>
-                                <label for="ex_ben_1">😐</label>
+                                <label for="ex_ben_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_benefits" value="Slightly important" id="ex_ben_2">
-                                <label for="ex_ben_2">🙂</label>
+                                <label for="ex_ben_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_benefits" value="Moderately important" id="ex_ben_3">
-                                <label for="ex_ben_3">😊</label>
+                                <label for="ex_ben_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_benefits" value="Very important" id="ex_ben_4">
-                                <label for="ex_ben_4">😃</label>
+                                <label for="ex_ben_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_benefits" value="Extremely important" id="ex_ben_5">
-                                <label for="ex_ben_5">🤩</label>
+                                <label for="ex_ben_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -608,27 +620,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_growth_pay" value="Not important" id="ex_gro_1" required>
-                                <label for="ex_gro_1">😐</label>
+                                <label for="ex_gro_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_growth_pay" value="Slightly important" id="ex_gro_2">
-                                <label for="ex_gro_2">🙂</label>
+                                <label for="ex_gro_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_growth_pay" value="Moderately important" id="ex_gro_3">
-                                <label for="ex_gro_3">😊</label>
+                                <label for="ex_gro_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_growth_pay" value="Very important" id="ex_gro_4">
-                                <label for="ex_gro_4">😃</label>
+                                <label for="ex_gro_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_growth_pay" value="Extremely important" id="ex_gro_5">
-                                <label for="ex_gro_5">🤩</label>
+                                <label for="ex_gro_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -639,27 +651,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_security" value="Not important" id="ex_sec_1" required>
-                                <label for="ex_sec_1">😐</label>
+                                <label for="ex_sec_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_security" value="Slightly important" id="ex_sec_2">
-                                <label for="ex_sec_2">🙂</label>
+                                <label for="ex_sec_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_security" value="Moderately important" id="ex_sec_3">
-                                <label for="ex_sec_3">😊</label>
+                                <label for="ex_sec_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_security" value="Very important" id="ex_sec_4">
-                                <label for="ex_sec_4">😃</label>
+                                <label for="ex_sec_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_security" value="Extremely important" id="ex_sec_5">
-                                <label for="ex_sec_5">🤩</label>
+                                <label for="ex_sec_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -670,27 +682,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_transparency" value="Not important" id="ex_tra_1" required>
-                                <label for="ex_tra_1">😐</label>
+                                <label for="ex_tra_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_transparency" value="Slightly important" id="ex_tra_2">
-                                <label for="ex_tra_2">🙂</label>
+                                <label for="ex_tra_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_transparency" value="Moderately important" id="ex_tra_3">
-                                <label for="ex_tra_3">😊</label>
+                                <label for="ex_tra_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_transparency" value="Very important" id="ex_tra_4">
-                                <label for="ex_tra_4">😃</label>
+                                <label for="ex_tra_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_transparency" value="Extremely important" id="ex_tra_5">
-                                <label for="ex_tra_5">🤩</label>
+                                <label for="ex_tra_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -701,27 +713,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_equal_pay" value="Not important" id="ex_equ_1" required>
-                                <label for="ex_equ_1">😐</label>
+                                <label for="ex_equ_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_equal_pay" value="Slightly important" id="ex_equ_2">
-                                <label for="ex_equ_2">🙂</label>
+                                <label for="ex_equ_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_equal_pay" value="Moderately important" id="ex_equ_3">
-                                <label for="ex_equ_3">😊</label>
+                                <label for="ex_equ_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_equal_pay" value="Very important" id="ex_equ_4">
-                                <label for="ex_equ_4">😃</label>
+                                <label for="ex_equ_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="extrinsic_equal_pay" value="Extremely important" id="ex_equ_5">
-                                <label for="ex_equ_5">🤩</label>
+                                <label for="ex_equ_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -738,27 +750,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_meaningful" value="Not important" id="in_mea_1" required>
-                                <label for="in_mea_1">😐</label>
+                                <label for="in_mea_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_meaningful" value="Slightly important" id="in_mea_2">
-                                <label for="in_mea_2">🙂</label>
+                                <label for="in_mea_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_meaningful" value="Moderately important" id="in_mea_3">
-                                <label for="in_mea_3">😊</label>
+                                <label for="in_mea_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_meaningful" value="Very important" id="in_mea_4">
-                                <label for="in_mea_4">😃</label>
+                                <label for="in_mea_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_meaningful" value="Extremely important" id="in_mea_5">
-                                <label for="in_mea_5">🤩</label>
+                                <label for="in_mea_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -769,27 +781,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_autonomy" value="Not important" id="in_aut_1" required>
-                                <label for="in_aut_1">😐</label>
+                                <label for="in_aut_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_autonomy" value="Slightly important" id="in_aut_2">
-                                <label for="in_aut_2">🙂</label>
+                                <label for="in_aut_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_autonomy" value="Moderately important" id="in_aut_3">
-                                <label for="in_aut_3">😊</label>
+                                <label for="in_aut_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_autonomy" value="Very important" id="in_aut_4">
-                                <label for="in_aut_4">😃</label>
+                                <label for="in_aut_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_autonomy" value="Extremely important" id="in_aut_5">
-                                <label for="in_aut_5">🤩</label>
+                                <label for="in_aut_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -800,27 +812,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_career" value="Not important" id="in_car_1" required>
-                                <label for="in_car_1">😐</label>
+                                <label for="in_car_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_career" value="Slightly important" id="in_car_2">
-                                <label for="in_car_2">🙂</label>
+                                <label for="in_car_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_career" value="Moderately important" id="in_car_3">
-                                <label for="in_car_3">😊</label>
+                                <label for="in_car_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_career" value="Very important" id="in_car_4">
-                                <label for="in_car_4">😃</label>
+                                <label for="in_car_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_career" value="Extremely important" id="in_car_5">
-                                <label for="in_car_5">🤩</label>
+                                <label for="in_car_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -831,27 +843,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_training" value="Not important" id="in_tra_1" required>
-                                <label for="in_tra_1">😐</label>
+                                <label for="in_tra_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_training" value="Slightly important" id="in_tra_2">
-                                <label for="in_tra_2">🙂</label>
+                                <label for="in_tra_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_training" value="Moderately important" id="in_tra_3">
-                                <label for="in_tra_3">😊</label>
+                                <label for="in_tra_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_training" value="Very important" id="in_tra_4">
-                                <label for="in_tra_4">😃</label>
+                                <label for="in_tra_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_training" value="Extremely important" id="in_tra_5">
-                                <label for="in_tra_5">🤩</label>
+                                <label for="in_tra_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -862,27 +874,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_mentoring" value="Not important" id="in_men_1" required>
-                                <label for="in_men_1">😐</label>
+                                <label for="in_men_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_mentoring" value="Slightly important" id="in_men_2">
-                                <label for="in_men_2">🙂</label>
+                                <label for="in_men_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_mentoring" value="Moderately important" id="in_men_3">
-                                <label for="in_men_3">😊</label>
+                                <label for="in_men_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_mentoring" value="Very important" id="in_men_4">
-                                <label for="in_men_4">😃</label>
+                                <label for="in_men_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="intrinsic_mentoring" value="Extremely important" id="in_men_5">
-                                <label for="in_men_5">🤩</label>
+                                <label for="in_men_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -899,27 +911,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_balance" value="Not important" id="we_bal_1" required>
-                                <label for="we_bal_1">😐</label>
+                                <label for="we_bal_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_balance" value="Slightly important" id="we_bal_2">
-                                <label for="we_bal_2">🙂</label>
+                                <label for="we_bal_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_balance" value="Moderately important" id="we_bal_3">
-                                <label for="we_bal_3">😊</label>
+                                <label for="we_bal_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_balance" value="Very important" id="we_bal_4">
-                                <label for="we_bal_4">😃</label>
+                                <label for="we_bal_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_balance" value="Extremely important" id="we_bal_5">
-                                <label for="we_bal_5">🤩</label>
+                                <label for="we_bal_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -930,27 +942,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity_reverse" value="Not important" id="we_div_1" required>
-                                <label for="we_div_1">😐</label>
+                                <label for="we_div_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity_reverse" value="Slightly important" id="we_div_2">
-                                <label for="we_div_2">🙂</label>
+                                <label for="we_div_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity_reverse" value="Moderately important" id="we_div_3">
-                                <label for="we_div_3">😊</label>
+                                <label for="we_div_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity_reverse" value="Very important" id="we_div_4">
-                                <label for="we_div_4">😃</label>
+                                <label for="we_div_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity_reverse" value="Extremely important" id="we_div_5">
-                                <label for="we_div_5">🤩</label>
+                                <label for="we_div_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -961,27 +973,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_manager" value="Not important" id="we_man_1" required>
-                                <label for="we_man_1">😐</label>
+                                <label for="we_man_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_manager" value="Slightly important" id="we_man_2">
-                                <label for="we_man_2">🙂</label>
+                                <label for="we_man_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_manager" value="Moderately important" id="we_man_3">
-                                <label for="we_man_3">😊</label>
+                                <label for="we_man_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_manager" value="Very important" id="we_man_4">
-                                <label for="we_man_4">😃</label>
+                                <label for="we_man_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_manager" value="Extremely important" id="we_man_5">
-                                <label for="we_man_5">🤩</label>
+                                <label for="we_man_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -992,27 +1004,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_coworkers" value="Not important" id="we_cow_1" required>
-                                <label for="we_cow_1">😐</label>
+                                <label for="we_cow_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworkers" value="Slightly important" id="we_cow_2">
-                                <label for="we_cow_2">🙂</label>
+                                <label for="we_cow_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworkers" value="Moderately important" id="we_cow_3">
-                                <label for="we_cow_3">😊</label>
+                                <label for="we_cow_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworkers" value="Very important" id="we_cow_4">
-                                <label for="we_cow_4">😃</label>
+                                <label for="we_cow_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworkers" value="Extremely important" id="we_cow_5">
-                                <label for="we_cow_5">🤩</label>
+                                <label for="we_cow_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1023,27 +1035,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_mental_health" value="Not important" id="we_men_1" required>
-                                <label for="we_men_1">😐</label>
+                                <label for="we_men_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mental_health" value="Slightly important" id="we_men_2">
-                                <label for="we_men_2">🙂</label>
+                                <label for="we_men_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mental_health" value="Moderately important" id="we_men_3">
-                                <label for="we_men_3">😊</label>
+                                <label for="we_men_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mental_health" value="Very important" id="we_men_4">
-                                <label for="we_men_4">😃</label>
+                                <label for="we_men_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mental_health" value="Extremely important" id="we_men_5">
-                                <label for="we_men_5">🤩</label>
+                                <label for="we_men_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1054,27 +1066,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity" value="Not important" id="we_inc_1" required>
-                                <label for="we_inc_1">😐</label>
+                                <label for="we_inc_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity" value="Slightly important" id="we_inc_2">
-                                <label for="we_inc_2">🙂</label>
+                                <label for="we_inc_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity" value="Moderately important" id="we_inc_3">
-                                <label for="we_inc_3">😊</label>
+                                <label for="we_inc_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity" value="Very important" id="we_inc_4">
-                                <label for="we_inc_4">😃</label>
+                                <label for="we_inc_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_diversity" value="Extremely important" id="we_inc_5">
-                                <label for="we_inc_5">🤩</label>
+                                <label for="we_inc_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1085,27 +1097,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_mission" value="Not important" id="we_mis_1" required>
-                                <label for="we_mis_1">😐</label>
+                                <label for="we_mis_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mission" value="Slightly important" id="we_mis_2">
-                                <label for="we_mis_2">🙂</label>
+                                <label for="we_mis_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mission" value="Moderately important" id="we_mis_3">
-                                <label for="we_mis_3">😊</label>
+                                <label for="we_mis_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mission" value="Very important" id="we_mis_4">
-                                <label for="we_mis_4">😃</label>
+                                <label for="we_mis_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_mission" value="Extremely important" id="we_mis_5">
-                                <label for="we_mis_5">🤩</label>
+                                <label for="we_mis_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1116,27 +1128,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_csr" value="Not important" id="we_csr_1" required>
-                                <label for="we_csr_1">😐</label>
+                                <label for="we_csr_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_csr" value="Slightly important" id="we_csr_2">
-                                <label for="we_csr_2">🙂</label>
+                                <label for="we_csr_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_csr" value="Moderately important" id="we_csr_3">
-                                <label for="we_csr_3">😊</label>
+                                <label for="we_csr_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_csr" value="Very important" id="we_csr_4">
-                                <label for="we_csr_4">😃</label>
+                                <label for="we_csr_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_csr" value="Extremely important" id="we_csr_5">
-                                <label for="we_csr_5">🤩</label>
+                                <label for="we_csr_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1147,27 +1159,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_reputation" value="Not important" id="we_rep_1" required>
-                                <label for="we_rep_1">😐</label>
+                                <label for="we_rep_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_reputation" value="Slightly important" id="we_rep_2">
-                                <label for="we_rep_2">🙂</label>
+                                <label for="we_rep_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_reputation" value="Moderately important" id="we_rep_3">
-                                <label for="we_rep_3">😊</label>
+                                <label for="we_rep_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_reputation" value="Very important" id="we_rep_4">
-                                <label for="we_rep_4">😃</label>
+                                <label for="we_rep_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_reputation" value="Extremely important" id="we_rep_5">
-                                <label for="we_rep_5">🤩</label>
+                                <label for="we_rep_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1178,27 +1190,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="work_coworker_reverse" value="Not important" id="we_cor_1" required>
-                                <label for="we_cor_1">😐</label>
+                                <label for="we_cor_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworker_reverse" value="Slightly important" id="we_cor_2">
-                                <label for="we_cor_2">🙂</label>
+                                <label for="we_cor_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworker_reverse" value="Moderately important" id="we_cor_3">
-                                <label for="we_cor_3">😊</label>
+                                <label for="we_cor_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworker_reverse" value="Very important" id="we_cor_4">
-                                <label for="we_cor_4">😃</label>
+                                <label for="we_cor_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="work_coworker_reverse" value="Extremely important" id="we_cor_5">
-                                <label for="we_cor_5">🤩</label>
+                                <label for="we_cor_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1280,27 +1292,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="recruitment_social_media" value="Not important" id="rec_soc_1" required>
-                                <label for="rec_soc_1">😐</label>
+                                <label for="rec_soc_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="recruitment_social_media" value="Slightly important" id="rec_soc_2">
-                                <label for="rec_soc_2">🙂</label>
+                                <label for="rec_soc_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="recruitment_social_media" value="Moderately important" id="rec_soc_3">
-                                <label for="rec_soc_3">😊</label>
+                                <label for="rec_soc_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="recruitment_social_media" value="Very important" id="rec_soc_4">
-                                <label for="rec_soc_4">😃</label>
+                                <label for="rec_soc_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="recruitment_social_media" value="Extremely important" id="rec_soc_5">
-                                <label for="rec_soc_5">🤩</label>
+                                <label for="rec_soc_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1317,27 +1329,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="tech_transparency" value="Not important" id="tec_tra_1" required>
-                                <label for="tec_tra_1">😐</label>
+                                <label for="tec_tra_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_transparency" value="Slightly important" id="tec_tra_2">
-                                <label for="tec_tra_2">🙂</label>
+                                <label for="tec_tra_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_transparency" value="Moderately important" id="tec_tra_3">
-                                <label for="tec_tra_3">😊</label>
+                                <label for="tec_tra_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_transparency" value="Very important" id="tec_tra_4">
-                                <label for="tec_tra_4">😃</label>
+                                <label for="tec_tra_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_transparency" value="Extremely important" id="tec_tra_5">
-                                <label for="tec_tra_5">🤩</label>
+                                <label for="tec_tra_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1348,27 +1360,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="tech_ethical" value="Not important" id="tec_eth_1" required>
-                                <label for="tec_eth_1">😐</label>
+                                <label for="tec_eth_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ethical" value="Slightly important" id="tec_eth_2">
-                                <label for="tec_eth_2">🙂</label>
+                                <label for="tec_eth_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ethical" value="Moderately important" id="tec_eth_3">
-                                <label for="tec_eth_3">😊</label>
+                                <label for="tec_eth_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ethical" value="Very important" id="tec_eth_4">
-                                <label for="tec_eth_4">😃</label>
+                                <label for="tec_eth_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ethical" value="Extremely important" id="tec_eth_5">
-                                <label for="tec_eth_5">🤩</label>
+                                <label for="tec_eth_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1379,27 +1391,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="tech_mental_health" value="Not important" id="tec_men_1" required>
-                                <label for="tec_men_1">😐</label>
+                                <label for="tec_men_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_mental_health" value="Slightly important" id="tec_men_2">
-                                <label for="tec_men_2">🙂</label>
+                                <label for="tec_men_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_mental_health" value="Moderately important" id="tec_men_3">
-                                <label for="tec_men_3">😊</label>
+                                <label for="tec_men_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_mental_health" value="Very important" id="tec_men_4">
-                                <label for="tec_men_4">😃</label>
+                                <label for="tec_men_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_mental_health" value="Extremely important" id="tec_men_5">
-                                <label for="tec_men_5">🤩</label>
+                                <label for="tec_men_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1410,27 +1422,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_use" value="Not important" id="tec_aiu_1" required>
-                                <label for="tec_aiu_1">😐</label>
+                                <label for="tec_aiu_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_use" value="Slightly important" id="tec_aiu_2">
-                                <label for="tec_aiu_2">🙂</label>
+                                <label for="tec_aiu_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_use" value="Moderately important" id="tec_aiu_3">
-                                <label for="tec_aiu_3">😊</label>
+                                <label for="tec_aiu_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_use" value="Very important" id="tec_aiu_4">
-                                <label for="tec_aiu_4">😃</label>
+                                <label for="tec_aiu_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_use" value="Extremely important" id="tec_aiu_5">
-                                <label for="tec_aiu_5">🤩</label>
+                                <label for="tec_aiu_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
@@ -1441,27 +1453,27 @@
                         <div class="scale-group">
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_confidence" value="Not important" id="tec_aic_1" required>
-                                <label for="tec_aic_1">😐</label>
+                                <label for="tec_aic_1">😢</label>
                                 <span class="scale-text">Not important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_confidence" value="Slightly important" id="tec_aic_2">
-                                <label for="tec_aic_2">🙂</label>
+                                <label for="tec_aic_2">😕</label>
                                 <span class="scale-text">Slightly important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_confidence" value="Moderately important" id="tec_aic_3">
-                                <label for="tec_aic_3">😊</label>
+                                <label for="tec_aic_3">😐</label>
                                 <span class="scale-text">Moderately important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_confidence" value="Very important" id="tec_aic_4">
-                                <label for="tec_aic_4">😃</label>
+                                <label for="tec_aic_4">🙂</label>
                                 <span class="scale-text">Very important</span>
                             </div>
                             <div class="scale-option">
                                 <input type="radio" name="tech_ai_confidence" value="Extremely important" id="tec_aic_5">
-                                <label for="tec_aic_5">🤩</label>
+                                <label for="tec_aic_5">😊</label>
                                 <span class="scale-text">Extremely important</span>
                             </div>
                         </div>
