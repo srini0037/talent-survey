@@ -1688,7 +1688,8 @@
             const platformsError = document.getElementById('platforms-error');
             if (platforms.length < 2) {
                 platformsError.classList.add('show');
-                platforms[0].closest('.question').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const platformQuestion = document.querySelector('input[name="recruitment_platforms"]').closest('.question');
+                platformQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             } else {
                 platformsError.classList.remove('show');
@@ -1699,7 +1700,8 @@
             const channelsError = document.getElementById('channels-error');
             if (channels.length < 1) {
                 channelsError.classList.add('show');
-                channels[0].closest('.question').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const channelQuestion = document.querySelector('input[name="recruitment_channels"]').closest('.question');
+                channelQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             } else {
                 channelsError.classList.remove('show');
@@ -1759,6 +1761,15 @@
                 });
             }, 3000);
         });
+
+        // Handle HTML5 validation errors and scroll to first invalid field on mobile
+        document.getElementById('surveyForm').addEventListener('invalid', function(e) {
+            e.preventDefault();
+            const firstInvalid = document.querySelector(':invalid');
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, true);
 
         // Console log for viewing stored responses
         console.log('To view all survey responses, type: JSON.parse(localStorage.getItem("surveyResponses"))');
