@@ -296,6 +296,42 @@
             display: block;
         }
 
+        .field-error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background-color: #ffebee;
+            border-left: 3px solid #e74c3c;
+            border-radius: 4px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .field-error.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question.has-error .question-label {
+            color: #e74c3c;
+        }
+
+        .question.has-error input[type="radio"],
+        .question.has-error input[type="checkbox"] {
+            border-color: #e74c3c;
+        }
+
         .success-message {
             display: none;
             position: fixed;
@@ -1680,17 +1716,65 @@
         }
 
         // Form submission
-        document.getElementById('surveyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+        // Comprehensive validation with error messages
+        function validateAndShowErrors() {
+            // Clear all previous errors
+            document.querySelectorAll('.field-error').forEach(el => {
+                el.classList.remove('show');
+            });
+            document.querySelectorAll('.question').forEach(el => {
+                el.classList.remove('has-error');
+            });
+
+            let firstError = null;
+            const errors = [];
+
+            // Check all required radio button groups
+            const radioGroups = ['consent_age', 'consent_voluntary', 'consent_anonymous', 'consent_withdraw', 
+                                'age', 'gender', 'employment', 'education',
+                                'extrinsic_bonus', 'extrinsic_healthcare', 'extrinsic_work_life', 'extrinsic_advancement',
+                                'intrinsic_purpose', 'intrinsic_skill', 'intrinsic_autonomy', 'intrinsic_creativity',
+                                'developmental_training', 'developmental_mentorship', 'developmental_career',
+                                'relational_culture', 'relational_inclusion', 'relational_collaboration',
+                                'security_stability', 'security_flexibility', 'technology_adoption'];
+
+            radioGroups.forEach(groupName => {
+                const checked = document.querySelector(`input[name="${groupName}"]:checked`);
+                if (!checked) {
+                    const firstInput = document.querySelector(`input[name="${groupName}"]`);
+                    if (firstInput) {
+                        const question = firstInput.closest('.question');
+                        const label = question.querySelector('.question-label');
+                        const fieldName = label.textContent.replace('*', '').trim();
+                        
+                        // Add error styling
+                        question.classList.add('has-error');
+                        
+                        // Create or show error message
+                        let errorDiv = question.querySelector('.field-error');
+                        if (!errorDiv) {
+                            errorDiv = document.createElement('div');
+                            errorDiv.className = 'field-error';
+                            question.appendChild(errorDiv);
+                        }
+                        errorDiv.textContent = `Please answer: ${fieldName}`;
+                        errorDiv.classList.add('show');
+                        
+                        errors.push({element: question, message: `Missing: ${fieldName}`});
+                        if (!firstError) firstError = question;
+                    }
+                }
+            });
+
             // Validate platforms (minimum 2)
             const platforms = document.querySelectorAll('input[name="recruitment_platforms"]:checked');
             const platformsError = document.getElementById('platforms-error');
             if (platforms.length < 2) {
                 platformsError.classList.add('show');
                 const platformQuestion = document.querySelector('input[name="recruitment_platforms"]').closest('.question');
-                platformQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
+                platformQuestion.classList.add('has-error');
+                errors.push({element: platformQuestion, message: 'Missing: Recruitment platforms (select at least 2)'});
+                if (!firstError) firstError = platformQuestion;
             } else {
                 platformsError.classList.remove('show');
             }
@@ -1701,8 +1785,9 @@
             if (channels.length < 1) {
                 channelsError.classList.add('show');
                 const channelQuestion = document.querySelector('input[name="recruitment_channels"]').closest('.question');
-                channelQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
+                channelQuestion.classList.add('has-error');
+                errors.push({element: channelQuestion, message: 'Missing: Recruitment channels (select at least 1)'});
+                if (!firstError) firstError = channelQuestion;
             } else {
                 channelsError.classList.remove('show');
             }
@@ -1711,10 +1796,35 @@
             const rankingError = document.getElementById('ranking-error');
             if (selectedRankings.length !== 5) {
                 rankingError.classList.add('show');
-                document.getElementById('rankingContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
+                const rankingContainer = document.getElementById('rankingContainer');
+                rankingContainer.classList.add('has-error');
+                errors.push({element: rankingContainer, message: 'Missing: Complete the ranking (select 5 items)'});
+                if (!firstError) firstError = rankingContainer;
             } else {
                 rankingError.classList.remove('show');
+            }
+
+            // If there are errors, scroll to first one and return false
+            if (firstError) {
+                // Scroll with offset to ensure it's visible
+                const offsetTop = firstError.getBoundingClientRect().top + window.pageYOffset - 100;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                return false;
+            }
+
+            return true;
+        }
+
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Run validation
+            if (!validateAndShowErrors()) {
+                return;
             }
 
             // Collect all form data
@@ -1761,15 +1871,6 @@
                 });
             }, 3000);
         });
-
-        // Handle HTML5 validation errors and scroll to first invalid field on mobile
-        document.getElementById('surveyForm').addEventListener('invalid', function(e) {
-            e.preventDefault();
-            const firstInvalid = document.querySelector(':invalid');
-            if (firstInvalid) {
-                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }, true);
 
         // Console log for viewing stored responses
         console.log('To view all survey responses, type: JSON.parse(localStorage.getItem("surveyResponses"))');
